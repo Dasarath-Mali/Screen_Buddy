@@ -25,6 +25,7 @@ import { resizeImageClient } from './lib/resize';
 import { detectElementsClient, DetectedElement } from './lib/ocr';
 import { speakText, stopSpeaking } from './lib/speech';
 import { loadSettings, HelperSettings, cleanIndianPhone, formatIndianPhone } from './lib/storage';
+import { evaluateRules } from '../server/services/rules';
 import translationsData from './i18n/translations.json';
 
 const translations: Record<string, any> = translationsData;
@@ -199,49 +200,60 @@ export const App: React.FC = () => {
         headers['x-groq-key'] = settings.userGroqKey;
       }
 
-      const res = await fetch('/api/analyze', {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-          image: resized.base64,
-          lang: currentLang,
-          ocr_text: ocrText,
-          elements,
-        }),
-      });
+      let data: AnalysisResultData;
 
-      // Read remaining limit hints
-      const remainingHeader = res.headers.get('X-RateLimit-Remaining');
-      if (remainingHeader) {
-        setChecksRemaining(parseInt(remainingHeader, 10));
-      }
+      try {
+        const res = await fetch('/api/analyze', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            image: resized.base64,
+            lang: currentLang,
+            ocr_text: ocrText,
+            elements,
+          }),
+        });
 
-      // Handle rate limits and busy responses
-      if (res.status === 429 || res.status === 503) {
-        const data = await res.json();
-        const retryAfter = data.retry_after || 20;
-        setBusyRetrySeconds(retryAfter);
+        // Read remaining limit hints
+        const remainingHeader = res.headers.get('X-RateLimit-Remaining');
+        if (remainingHeader) {
+          setChecksRemaining(parseInt(remainingHeader, 10));
+        }
 
-        if (data.fallback) {
-          setAnalysisResult(data.fallback);
-          if (data.fallback.next_action?.box) {
-            setCurrentBox(data.fallback.next_action.box);
+        // Handle rate limits and busy responses
+        if (res.status === 429 || res.status === 503) {
+          const busyData = await res.json();
+          const retryAfter = busyData.retry_after || 20;
+          setBusyRetrySeconds(retryAfter);
+
+          if (busyData.fallback) {
+            setAnalysisResult(busyData.fallback);
+            if (busyData.fallback.next_action?.box) {
+              setCurrentBox(busyData.fallback.next_action.box);
+            }
           }
+
+          if (res.status === 503 && busyData.error === 'busy' && retryAfter > 300) {
+            setIsDailyExhausted(true);
+          }
+
+          setAppState('busy');
+          return;
         }
 
-        if (res.status === 503 && data.error === 'busy' && retryAfter > 300) {
-          setIsDailyExhausted(true);
+        if (res.ok) {
+          data = await res.json();
+        } else {
+          // If server returned 404 (e.g. static hosting on Netlify) or error, seamlessly fall back to local rule engine!
+          console.warn('API returned status', res.status, '- executing local client rules fallback');
+          data = evaluateRules(ocrText, elements, currentLang);
         }
-
-        setAppState('busy');
-        return;
+      } catch (networkErr) {
+        // Network offline or failed -> seamlessly evaluate rules locally on client!
+        console.warn('API network error, executing local client rules fallback:', networkErr);
+        data = evaluateRules(ocrText, elements, currentLang);
       }
 
-      if (!res.ok) {
-        throw new Error('Analysis request failed');
-      }
-
-      const data: AnalysisResultData = await res.json();
       setAnalysisResult(data);
 
       if (data.next_action?.box) {
@@ -253,7 +265,14 @@ export const App: React.FC = () => {
       setAppState('result');
     } catch (err) {
       console.error('Error analyzing screen:', err);
-      setAppState('error');
+      // Final fallback: try local evaluation even on unexpected error
+      try {
+        const fallbackResult = evaluateRules('', [], currentLang);
+        setAnalysisResult(fallbackResult);
+        setAppState('result');
+      } catch {
+        setAppState('error');
+      }
     }
   };
 

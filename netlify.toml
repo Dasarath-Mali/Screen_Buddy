@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA redirect rule: redirects all web routes to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

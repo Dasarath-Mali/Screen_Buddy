@@ -14,11 +14,10 @@ export interface OCRResult {
 
 let clientWorkerPromise: Promise<Worker> | null = null;
 
-async function getClientWorker(): Promise<Worker> {
+export async function getClientWorker(): Promise<Worker> {
   if (!clientWorkerPromise) {
     clientWorkerPromise = (async () => {
       // Use 'eng' for fast, reliable character recognition in the browser
-      // Avoids downloading heavy language packs (hin/tel) on mobile networks
       const worker = await createWorker('eng');
       return worker;
     })();
@@ -26,15 +25,21 @@ async function getClientWorker(): Promise<Worker> {
   return clientWorkerPromise;
 }
 
+// Warm up worker in background on page load
+if (typeof window !== 'undefined') {
+  getClientWorker().catch((e) => console.warn('Background OCR worker warm-up:', e));
+}
+
 export async function detectElementsClient(
   imageSource: string | File,
   _lang: string = 'eng'
 ): Promise<OCRResult> {
-  // Use a 6-second timeout to prevent UI freezes on slow devices
+  // Allow 25 seconds for first-time WASM / traineddata download on slow networks
   const timeoutPromise = new Promise<OCRResult>((resolve) => {
     setTimeout(() => {
+      console.warn('Browser OCR timed out, delegating to backend or local rule engine');
       resolve({ fullText: '', elements: [] });
-    }, 6000);
+    }, 25000);
   });
 
   const recognizePromise = (async (): Promise<OCRResult> => {
