@@ -1,0 +1,86 @@
+[
+  {
+    "id": "eval-01",
+    "name": "UPI Collect Request ₹4,999",
+    "type": "scam",
+    "ocrText": "Collect request received for Rs 4,999 from Lucky Winner Hub. Enter your UPI PIN to receive money.",
+    "expectedVerdict": "scam"
+  },
+  {
+    "id": "eval-02",
+    "name": "Electricity Disconnection Warning",
+    "type": "scam",
+    "ocrText": "Dear consumer your power disconnection will occur tonight at 9:30 PM due to unpaid electricity bill. Contact officer immediately.",
+    "expectedVerdict": "scam"
+  },
+  {
+    "id": "eval-03",
+    "name": "AnyDesk Remote APK download",
+    "type": "scam",
+    "ocrText": "Bank support request: please install AnyDesk quicksupport apk to resolve pending transaction issue.",
+    "expectedVerdict": "scam"
+  },
+  {
+    "id": "eval-04",
+    "name": "KYC Expiry Urgent Block",
+    "type": "scam",
+    "ocrText": "Your bank account KYC expired today. SIM will be blocked within 2 hours. Click sbi-kyc-update.xyz to verify.",
+    "expectedVerdict": "scam"
+  },
+  {
+    "id": "eval-05",
+    "name": "Fake Police Digital Arrest",
+    "type": "scam",
+    "ocrText": "CBI Officer arrest warrant issued under narcotics bureau illegal courier parcel. Transfer bail fee immediately.",
+    "expectedVerdict": "scam"
+  },
+  {
+    "id": "eval-06",
+    "name": "KBC Lottery 25 Lakh",
+    "type": "scam",
+    "ocrText": "Congratulations you won 25 lakh in KBC lottery. Deposit processing fee to claim prize money.",
+    "expectedVerdict": "scam"
+  },
+  {
+    "id": "eval-07",
+    "name": "Genuine PhonePe Mobile Recharge",
+    "type": "genuine",
+    "ocrText": "PhonePe Mobile Recharge: Rs 299 for 9876543210. Plan: 1.5 GB/day, Unlimited Calls. Confirm payment.",
+    "expectedVerdict": "safe"
+  },
+  {
+    "id": "eval-08",
+    "name": "Genuine DigiLocker Driving License",
+    "type": "genuine",
+    "ocrText": "DigiLocker Government of India. Driving License issued by Transport Department. Download document.",
+    "expectedVerdict": "safe"
+  },
+  {
+    "id": "eval-09",
+    "name": "Genuine IRCTC Train Booking",
+    "type": "genuine",
+    "ocrText": "IRCTC Train ticket booking confirmation. Passenger: Ramesh Kumar, Train 12951 Mumbai Rajdhani. View ticket.",
+    "expectedVerdict": "safe"
+  },
+  {
+    "id": "eval-10",
+    "name": "Card CVV on Unfamiliar Page",
+    "type": "ambiguous",
+    "ocrText": "Verification portal: Please enter card number, card expiry and cvv, enter otp to verify card.",
+    "expectedVerdict": "caution"
+  },
+  {
+    "id": "eval-11",
+    "name": "WhatsApp Fake Stock Investment Scam (Johnny Doe)",
+    "type": "scam",
+    "ocrText": "Chats Johnny Doe online You can earn 70,000k a month by investing in this new stock — do you understand how lucrative this is? Visit invest0r.com/koisljasd9845 to get in on the ground floor.",
+    "expectedVerdict": "scam"
+  },
+  {
+    "id": "eval-12",
+    "name": "WhatsApp Fake Job Recruitment Scam (Colorwhistle)",
+    "type": "scam",
+    "ocrText": "+91 99510 44835 for more information please visit our website https://colorwhistle.com/ LEO Towers Coimbatore if you want i will show my company id card I understand how you feel because there are a lot of scam companies running nowadays and they copy like our real companies, I suggest you try once instead of giving up now its just you need to recieve payment thats it last step i promise you you will get paid",
+    "expectedVerdict": "scam"
+  }
+]

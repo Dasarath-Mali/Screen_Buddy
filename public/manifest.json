@@ -1,0 +1,21 @@
+{
+  "short_name": "ScreenBuddy",
+  "name": "Screen Buddy for Seniors",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#FAFAF7",
+  "theme_color": "#FAFAF7",
+  "display": "standalone",
+  "orientation": "portrait"
+}

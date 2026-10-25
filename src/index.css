@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #FDFBF7;           /* warm cream canvas */
+  --cream: #FFFDF9;        /* rich cream card */
+  --cream-soft: #F8F1E3;   /* soft cream tint */
+  --cream-dark: #EADEC8;   /* cream border line */
+  --surface: #FFFFFF;
+  --ink: #1B1F23;
+  --ink-soft: #5B6670;
+  --line: #EADEC8;
+  
+  --brand: #2563EB;
+  --brand-soft: #EAF1FF;
+  
+  --red: #DC2626;
+  --red-soft: #FEE2E2;
+  
+  --orange: #EA580C;
+  --orange-soft: #FFEDD5;
+  
+  --green: #16A34A;
+  --green-soft: #DCFCE7;
+  
+  --safe: #16A34A;
+  --safe-soft: #DCFCE7;
+  --caution: #EA580C;
+  --caution-soft: #FFEDD5;
+  --scam: #DC2626;
+  --scam-soft: #FEE2E2;
+  
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --shadow: 0 6px 24px rgba(45, 30, 15, 0.06);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', 'Noto Sans Devanagari', 'Noto Sans Telugu', 'Noto Sans Tamil', 'Noto Sans Bengali', system-ui, -apple-system, sans-serif;
+  font-size: 1.25rem; /* 20px min for senior legibility */
+  line-height: 1.5;
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* 56px minimum touch targets */
+button, .touch-target {
+  min-height: 56px;
+  min-width: 56px;
+}
+
+/* Primary CTA Button: Vibrant Rich Orange Gradient */
+.btn-pick-screenshot {
+  background: linear-gradient(135deg, #EA580C 0%, #D97706 100%) !important;
+  color: #FFFFFF !important;
+  border: 2px solid #C2410C !important;
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.35) !important;
+}
+
+.btn-pick-screenshot:hover {
+  background: linear-gradient(135deg, #C2410C 0%, #B45309 100%) !important;
+}
+
+.btn-pick-screenshot:active {
+  transform: scale(0.97);
+}
+
+/* Logo badge */
+.sb-logo-badge {
+  background: linear-gradient(135deg, #EA580C 0%, #DC2626 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35) !important;
+}
+
+/* Sample & How it works buttons */
+.btn-sample {
+  background-color: #FFF8EE !important;
+  border: 2px solid #FB923C !important;
+  color: #9A3412 !important;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.12) !important;
+}
+.btn-sample:hover {
+  background-color: #FFEDD5 !important;
+}
+
+.btn-how-it-works {
+  background-color: #F0FDF4 !important;
+  border: 2px solid #4ADE80 !important;
+  color: #166534 !important;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.12) !important;
+}
+.btn-how-it-works:hover {
+  background-color: #DCFCE7 !important;
+}
+
+/* Call family & Voice buttons */
+.btn-call-family {
+  background-color: #DC2626 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #991B1B !important;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.35) !important;
+}
+.btn-call-family:hover {
+  background-color: #B91C1C !important;
+}
+
+.btn-read-aloud {
+  background-color: #16A34A !important;
+  color: #FFFFFF !important;
+  border: 2px solid #15803D !important;
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.30) !important;
+}
+.btn-read-aloud:hover {
+  background-color: #15803D !important;
+}
+
+/* Breathing glow loop for primary CTA */
+@keyframes breathing-glow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 6px 20px rgba(234, 88, 12, 0.35);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 10px 32px rgba(234, 88, 12, 0.60);
+  }
+}
+
+.animate-breathing {
+  animation: breathing-glow 3s ease-in-out infinite;
+}
+
+/* Scanning line sweep */
+@keyframes scan-sweep {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-scan {
+  animation: scan-sweep 1.6s ease-in-out infinite;
+}
+
+/* Pulsing ring around circled target */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.2, 0, 0, 1) infinite;
+  transform-origin: center;
+}
+
+/* Bobbing pointer */
+@keyframes bobbing-pointer {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-bob {
+  animation: bobbing-pointer 1.2s ease-in-out infinite;
+}
+
+/* Multi-colored Voice waveform bars */
+@keyframes sound-wave {
+  0%, 100% {
+    height: 6px;
+  }
+  50% {
+    height: 24px;
+  }
+}
+
+.wave-bar {
+  width: 4px;
+  border-radius: 9999px;
+  animation: sound-wave 0.8s ease-in-out infinite;
+}
+
+.wave-bar-green {
+  background-color: #22C55E;
+  animation-delay: 0.0s;
+}
+
+.wave-bar-orange {
+  background-color: #FB923C;
+  animation-delay: 0.15s;
+}
+
+.wave-bar-red {
+  background-color: #EF4444;
+  animation-delay: 0.3s;
+}
+
+.wave-bar-blue {
+  background-color: #3B82F6;
+  animation-delay: 0.45s;
+}
+
+.wave-bar-emerald {
+  background-color: #10B981;
+  animation-delay: 0.6s;
+}
+
+/* Gentle shake and settle for scam warning */
+@keyframes shake-and-settle {
+  0% { transform: scale(0.9) rotate(0deg); }
+  25% { transform: scale(1.05) rotate(-3deg); }
+  50% { transform: scale(1.02) rotate(3deg); }
+  75% { transform: scale(1.01) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.animate-shake-settle {
+  animation: shake-and-settle 0.5s ease-out forwards;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-breathing,
+  .animate-scan,
+  .animate-pulse-ring,
+  .animate-bob,
+  .wave-bar,
+  .animate-shake-settle {
+    animation: none !important;
+    transition: none !important;
+  }
+}

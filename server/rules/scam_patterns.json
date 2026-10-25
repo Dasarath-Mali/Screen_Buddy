@@ -1,0 +1,185 @@
+{
+  "version": "1.1.0",
+  "patterns": [
+    {
+      "id": "collect_request_receive_pin",
+      "category": "upi_scam",
+      "keywords": [
+        "collect request",
+        "requested money",
+        "pay to receive",
+        "enter pin to receive",
+        "enter upi pin to receive",
+        "approve request to receive",
+        "receive cashback",
+        "scan to receive"
+      ],
+      "reason": "Someone is asking you to enter a UPI PIN or tap Pay to RECEIVE money. Receiving money NEVER needs a PIN or payment approval.",
+      "severity": "scam"
+    },
+    {
+      "id": "stock_crypto_investment_fraud",
+      "category": "investment_scam",
+      "keywords": [
+        "investing in this new stock",
+        "invest in this stock",
+        "lucrative",
+        "ground floor",
+        "earn a month",
+        "earn per month",
+        "earn daily",
+        "earn 70,000",
+        "70,000k",
+        "guaranteed return",
+        "high returns",
+        "stock tips",
+        "crypto profit",
+        "forex profit",
+        "double your money",
+        "trading advisor",
+        "investment plan",
+        "task earning",
+        "daily income"
+      ],
+      "reason": "This is a fake stock/investment scam promising unrealistic returns. Never invest money or open financial links from unknown contacts on WhatsApp or SMS.",
+      "severity": "scam"
+    },
+    {
+      "id": "remote_access_apps",
+      "category": "device_takeover",
+      "keywords": [
+        "anydesk",
+        "teamviewer",
+        "quicksupport",
+        "rustdesk",
+        "screen share",
+        "install apk",
+        "download apk"
+      ],
+      "reason": "This is asking you to install a remote screen-sharing app (like AnyDesk or TeamViewer) or unknown APK. Scammers use this to control your phone.",
+      "severity": "scam"
+    },
+    {
+      "id": "kyc_pan_aadhaar_expiry",
+      "category": "phishing",
+      "keywords": [
+        "kyc expired",
+        "update kyc",
+        "sim will be blocked",
+        "sim deactivated",
+        "pan link expired",
+        "aadhaar update urgent",
+        "account suspended kyc",
+        "ebill kyc"
+      ],
+      "reason": "Urgent warnings claiming your KYC, SIM, or bank account will be blocked are phishing traps to steal your details.",
+      "severity": "scam"
+    },
+    {
+      "id": "electricity_bill_disconnection",
+      "category": "utility_fraud",
+      "keywords": [
+        "electricity bill unpaid",
+        "power disconnection",
+        "power cut at 9:30",
+        "power cut tonight",
+        "electricity officer",
+        "light bill pending",
+        "bijli bill"
+      ],
+      "reason": "Messages threatening electricity disconnection tonight are common scams. Do not call the number or pay here.",
+      "severity": "scam"
+    },
+    {
+      "id": "fake_authority_extortion",
+      "category": "digital_arrest",
+      "keywords": [
+        "cbi officer",
+        "mumbai police",
+        "customs department",
+        "trai parcel",
+        "arrest warrant",
+        "digital arrest",
+        "narcotics bureau",
+        "fedex parcel illegal",
+        "fir registered"
+      ],
+      "reason": "Government agencies, police, or customs will NEVER ask you to make payments or transfer money to avoid arrest.",
+      "severity": "scam"
+    },
+    {
+      "id": "lottery_kbc_job_reward",
+      "category": "prize_fraud",
+      "keywords": [
+        "kbc lottery",
+        "won 25 lakh",
+        "job offer daily payment",
+        "processing fee for prize",
+        "claim lottery reward",
+        "telegram task refund",
+        "scratch card prize"
+      ],
+      "reason": "Messages saying you won a lottery, prize, or high-paying easy job asking for advance fees are scams.",
+      "severity": "scam"
+    },
+    {
+      "id": "card_cvv_otp_harvesting",
+      "category": "credential_theft",
+      "keywords": [
+        "enter cvv",
+        "card expiry and cvv",
+        "enter otp to verify card",
+        "card details verification"
+      ],
+      "reason": "The screen is asking for card number, CVV, and OTP all together on an unfamiliar page.",
+      "severity": "caution"
+    },
+    {
+      "id": "whatsapp_telegram_job_task_scam",
+      "category": "job_recruitment_scam",
+      "keywords": [
+        "recieve payment",
+        "receive payment",
+        "last step i promise",
+        "promise you you will get paid",
+        "you will get paid",
+        "show my company id card",
+        "company id card",
+        "scam companies running nowadays",
+        "copy like our real companies",
+        "join to us",
+        "try once instead of giving up",
+        "colorwhistle",
+        "part time job offer",
+        "task to earn",
+        "like video earn",
+        "review earn money",
+        "telegram task",
+        "prepaid task",
+        "salary daily"
+      ],
+      "reason": "This is a fake WhatsApp job/task scam. Scammers pretend to be company HR, offer fake job tasks, and promise payments to lure you into sending money.",
+      "severity": "scam"
+    },
+    {
+      "id": "suspicious_domains_and_typosquatting",
+      "category": "fake_domains",
+      "keywords": [
+        "invest0r",
+        ".xyz",
+        ".top",
+        ".club",
+        ".online",
+        ".site",
+        "sbi-kyc",
+        "gov-india",
+        "yono-update",
+        "paytm-cashback",
+        "bit.ly",
+        "tinyurl"
+      ],
+      "reason": "The website address contains altered spelling (e.g. numbers replacing letters like invest0r) or suspicious links.",
+      "severity": "scam"
+    }
+  ]
+}
