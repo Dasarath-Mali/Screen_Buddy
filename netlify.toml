@@ -1,8 +1,21 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  functions = "netlify/functions"
 
-# SPA redirect rule: redirects all web routes to index.html
+# 1. Route /api/tts directly to Netlify TTS function
+[[redirects]]
+  from = "/api/tts"
+  to = "/.netlify/functions/tts"
+  status = 200
+
+# 2. Route /api/analyze directly to Netlify Analyze function
+[[redirects]]
+  from = "/api/analyze"
+  to = "/.netlify/functions/analyze"
+  status = 200
+
+# 3. SPA Fallback: Redirect all other web routes to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
